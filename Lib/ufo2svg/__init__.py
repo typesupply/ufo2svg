@@ -1,4 +1,6 @@
-import zlib
+import os
+import gzip
+import tempfile
 from cStringIO import StringIO
 from xml.etree.ElementTree import ElementTree, Element
 from fontFace import writeFontFace
@@ -14,7 +16,7 @@ def convertUFOToSVGFont(font, destinationPathOrFile=None, doKerning=True, ignore
     destinationPathOrFile-A path or file object indicating where the SVG should go.
     doKerning-Boolean indicating if kerning should be written or not.
     ignoreGlyphs-A list of glyphs in the UFO that should not be written into the UFO.
-    compress-Boolean indicating if the SVG should be compressed with zlib.
+    compress-Boolean indicating if the SVG should be compressed with gzip.
     whitespace-A string of whitespace to use for pretty printing the XML.
     """
     svg = Element("svg", attrib=dict(version="1.1", xmlns="http://www.w3.org/2000/svg"))
@@ -51,7 +53,18 @@ def convertUFOToSVGFont(font, destinationPathOrFile=None, doKerning=True, ignore
     temp.close()
     # compress
     if compress:
-        data = zlib.compress(data, 9)
+        # make a temp file
+        tempPath = tempfile.mkstemp()[1]
+        # gzip
+        f = gzip.open(tempPath, "wb")
+        f.write(data)
+        f.close()
+        # read the compressed data
+        f = open(tempPath, "rb")
+        data = f.read()
+        f.close()
+        # remove the temp file
+        os.remove(tempPath)
     # write the result
     if isinstance(destinationPathOrFile, basestring):
         f = open(destinationPathOrFile, "wb")
