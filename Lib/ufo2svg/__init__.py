@@ -1,11 +1,13 @@
+from __future__ import absolute_import
+from fontTools.misc.py23 import *
 import os
 import gzip
 import tempfile
-from cStringIO import StringIO
 from xml.etree.ElementTree import ElementTree, Element
-from fontFace import writeFontFace
-from glyphs import writeMissingGlyph, writeGlyph
-from kerning import writeHKernElements
+
+from .fontFace import writeFontFace
+from .glyphs import writeMissingGlyph, writeGlyph
+from .kerning import writeHKernElements
 
 def convertUFOToSVGFont(font, destinationPathOrFile=None, doKerning=True, ignoreGlyphs=[], compress=False, whitespace=None):
     """

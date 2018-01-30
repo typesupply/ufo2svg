@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 from fontTools.pens.basePen import BasePen
-from tools import pointToString, valueToString
+from .tools import pointToString, valueToString
 
 
 class SVGPathPen(BasePen):

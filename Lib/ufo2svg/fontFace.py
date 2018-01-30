@@ -1,5 +1,7 @@
+from __future__ import absolute_import
+
 from xml.etree.ElementTree import Element
-from tools import valueToString
+from .tools import valueToString
 
 def writeFontFace(font, svgFont):
     svgFontFaceAttrib = {}
@@ -88,6 +90,10 @@ def _writeFontStretch(font, svgFontFaceAttrib):
     >>> svgFontFaceAttrib
     {'font-stretch': 'ultra-expanded'}
     """
+    if font.info.openTypeOS2WidthClass is None:
+        return
+    if font.info.openTypeOS2WidthClass is None:
+        return
     if font.info.openTypeOS2WidthClass >= 1 and font.info.openTypeOS2WidthClass <= 9:
         options = "ultra-condensed extra-condensed condensed semi-condensed normal semi-expanded expanded extra-expanded ultra-expanded".split(" ")
         svgFontFaceAttrib["font-stretch"] = options[font.info.openTypeOS2WidthClass - 1]
@@ -180,7 +186,7 @@ def _writeBbox(font, svgFontFaceAttrib):
     >>> _writeBbox(font, svgFontFaceAttrib)
     >>> svgFontFaceAttrib
     {'bbox': '0 0 0 0'}
-    >>> font.newGlyph("A")
+    >>> _ = font.newGlyph("A")
     >>> glyph = font["A"]
     >>> pen = glyph.getPen()
     >>> pen.moveTo((-10, -10))

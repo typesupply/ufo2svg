@@ -1,6 +1,9 @@
+from __future__ import absolute_import
+from fontTools.misc.py23 import *
+
 from xml.etree.ElementTree import Element
-from svgPathPen import SVGPathPen
-from tools import valueToString
+from .svgPathPen import SVGPathPen
+from .tools import valueToString
 
 def writeMissingGlyph(font, svgFont):
     svgMissingGlyphAttrib = {}
@@ -80,7 +83,7 @@ def _writeUnicode(glyph, attrib):
     >>> glyph.unicode = ord(u"A")
     >>> _writeUnicode(glyph, attrib)
     >>> attrib
-    {'unicode': u'A'}
+    {'unicode': 'A'}
     """
     if glyph.unicode:
         attrib["unicode"] = unichr(glyph.unicode)
