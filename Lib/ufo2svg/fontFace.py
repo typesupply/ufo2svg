@@ -1,5 +1,5 @@
 from xml.etree.ElementTree import Element
-from tools import valueToString
+from ufo2svg.tools import valueToString
 
 def writeFontFace(font, svgFont):
     svgFontFaceAttrib = {}
