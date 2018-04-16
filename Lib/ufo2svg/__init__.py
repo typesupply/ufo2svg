@@ -1,7 +1,7 @@
 import os
 import gzip
 import tempfile
-from cStringIO import StringIO
+from fontTools.misc.py23 import StringIO
 from xml.etree.ElementTree import ElementTree, Element
 from fontFace import writeFontFace
 from glyphs import writeMissingGlyph, writeGlyph
