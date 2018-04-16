@@ -1,5 +1,5 @@
 from fontTools.pens.basePen import BasePen
-from tools import pointToString, valueToString
+from ufo2svg.tools import pointToString, valueToString
 
 
 class SVGPathPen(BasePen):
