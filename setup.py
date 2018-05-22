@@ -6,8 +6,8 @@ from setuptools import setup
 try:
     import fontTools
 except:
-    print "*** Warning: ufo2svg requires FontTools, see:"
-    print "    fonttools.sf.net"
+    print("*** Warning: ufo2svg requires FontTools, see:")
+    print("    fonttools.sf.net")
 
 
 setup(name="ufo2svg",

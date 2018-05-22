@@ -1,11 +1,11 @@
 import os
 import gzip
 import tempfile
-from cStringIO import StringIO
+from fontTools.misc.py23 import StringIO
 from xml.etree.ElementTree import ElementTree, Element
-from fontFace import writeFontFace
-from glyphs import writeMissingGlyph, writeGlyph
-from kerning import writeHKernElements
+from ufo2svg.fontFace import writeFontFace
+from ufo2svg.glyphs import writeMissingGlyph, writeGlyph
+from ufo2svg.kerning import writeHKernElements
 
 def convertUFOToSVGFont(font, destinationPathOrFile=None, doKerning=True, ignoreGlyphs=[], compress=False, whitespace=None):
     """

@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import Element
-from svgPathPen import SVGPathPen
-from tools import valueToString
+from ufo2svg.svgPathPen import SVGPathPen
+from ufo2svg.tools import valueToString
 
 def writeMissingGlyph(font, svgFont):
     svgMissingGlyphAttrib = {}
