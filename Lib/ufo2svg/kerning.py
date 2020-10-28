@@ -28,14 +28,14 @@ def _makeHkern(pair, value, font):
     ...     font
     ... )
     >>> kern.tag, kern.attrib
-    ('hkern', {'k': '10', 'u1': u'A', 'u2': u'B'})
+    ('hkern', {'k': '10', 'u1': 'A', 'u2': 'B'})
     >>> kern = _makeHkern(
     ...     (["A", "C"], ["B", "D"]),
     ...     -10,
     ...     font
     ... )
     >>> kern.tag, kern.attrib
-    ('hkern', {'k': '10', 'u1': u'A,C', 'u2': u'B,D'})
+    ('hkern', {'k': '10', 'u1': 'A,C', 'u2': 'B,D'})
 
     # glyph names
     >>> kern = _makeHkern(
@@ -60,21 +60,21 @@ def _makeHkern(pair, value, font):
     ...     font
     ... )
     >>> kern.tag, kern.attrib
-    ('hkern', {'k': '10', 'u1': u'A', 'g2': 'B.alt1'})
+    ('hkern', {'k': '10', 'u1': 'A', 'g2': 'B.alt1'})
     >>> kern = _makeHkern(
     ...     (["A.alt1"], ["B"]),
     ...     -10,
     ...     font
     ... )
     >>> kern.tag, kern.attrib
-    ('hkern', {'k': '10', 'g1': 'A.alt1', 'u2': u'B'})
+    ('hkern', {'k': '10', 'g1': 'A.alt1', 'u2': 'B'})
     >>> kern = _makeHkern(
     ...     (["A", "A.alt1"], ["B", "B.alt1"]),
     ...     -10,
     ...     font
     ... )
     >>> kern.tag, kern.attrib
-    ('hkern', {'k': '10', 'u1': u'A', 'g2': 'B.alt1', 'g1': 'A.alt1', 'u2': u'B'})
+    ('hkern', {'k': '10', 'u1': 'A', 'g2': 'B.alt1', 'g1': 'A.alt1', 'u2': 'B'})
     """
     glyph1List, glyph2List = pair
     u1 = []
@@ -82,7 +82,7 @@ def _makeHkern(pair, value, font):
     for name in glyph1List:
         glyph = font[name]
         if glyph.unicode:
-            u1.append(unichr(glyph.unicode))
+            u1.append(chr(glyph.unicode))
         else:
             g1.append(name)
     u2 = []
@@ -90,16 +90,16 @@ def _makeHkern(pair, value, font):
     for name in glyph2List:
         glyph = font[name]
         if glyph.unicode:
-            u2.append(unichr(glyph.unicode))
+            u2.append(chr(glyph.unicode))
         else:
             g2.append(name)
     pairAttrib = dict(k=str(-value))
     if u1:
-        pairAttrib["u1"] = u",".join(u1)
+        pairAttrib["u1"] = ",".join(u1)
     if g1:
         pairAttrib["g1"] = ",".join(g1)
     if u2:
-        pairAttrib["u2"] = u",".join(u2)
+        pairAttrib["u2"] = ",".join(u2)
     if g2:
         pairAttrib["g2"] = ",".join(g2)
     kern = Element("hkern", attrib=pairAttrib)

@@ -86,7 +86,7 @@ def _writeUnicode(glyph, attrib):
     {'unicode': 'A'}
     """
     if glyph.unicode:
-        attrib["unicode"] = unichr(glyph.unicode)
+        attrib["unicode"] = chr(glyph.unicode)
 
 def _writeD(glyph, attrib):
     """

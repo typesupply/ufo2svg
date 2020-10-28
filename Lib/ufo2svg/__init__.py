@@ -50,7 +50,7 @@ def convertUFOToSVGFont(font, destinationPathOrFile=None, doKerning=True, ignore
         h = "".join(h.strip().splitlines())
     temp.write(h)
     tree = ElementTree(svg)
-    tree.write(temp)
+    tree.write(temp, encoding='unicode')
     data = temp.getvalue()
     temp.close()
     # compress
@@ -68,8 +68,8 @@ def convertUFOToSVGFont(font, destinationPathOrFile=None, doKerning=True, ignore
         # remove the temp file
         os.remove(tempPath)
     # write the result
-    if isinstance(destinationPathOrFile, basestring):
-        f = open(destinationPathOrFile, "wb")
+    if isinstance(destinationPathOrFile, str):
+        f = open(destinationPathOrFile, "w")
         f.write(data)
         f.close()
     else:
