@@ -69,7 +69,7 @@ def convertUFOToSVGFont(font, destinationPathOrFile=None, doKerning=True, ignore
         os.remove(tempPath)
     # write the result
     if isinstance(destinationPathOrFile, str):
-        f = open(destinationPathOrFile, "w")
+        f = open(destinationPathOrFile, "w", encoding='utf-8')
         f.write(data)
         f.close()
     else:
