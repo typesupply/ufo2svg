@@ -1,8 +1,8 @@
 from __future__ import absolute_import
-from fontTools.misc.py23 import *
 import os
 import gzip
 import tempfile
+from io import StringIO
 from xml.etree.ElementTree import ElementTree, Element
 
 from .fontFace import writeFontFace

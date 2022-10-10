@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from fontTools.misc.py23 import *
 
 from xml.etree.ElementTree import Element
 from .svgPathPen import SVGPathPen
